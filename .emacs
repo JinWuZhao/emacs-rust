@@ -47,7 +47,7 @@ re-downloaded in order to locate PACKAGE."
 
 (require-packages package-selected-packages)
 
-(add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
+;; (add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
 
 (display-time)
 (setq explicit-shell-file-name "/bin/bash")
