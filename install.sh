@@ -1,12 +1,13 @@
 #!/bin/sh
 
-apk update
-apk upgrade
+pacman -Syu --noconfirm
 
-apk --no-cache add mysql-client
+pacman -S --noconfirm mysql-client
 
-curl https://sh.rustup.rs -sSf | sh
-rustup update
+pacman -Scc --noconfirm
+
+curl https://sh.rustup.rs -sSf | sh -y
+rustup update stable
 rustup component add rls rust-analysis rust-src
 
 emacs --daemon
