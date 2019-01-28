@@ -120,8 +120,4 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
 (require 'lsp-mode)
-(with-eval-after-load 'lsp-mode
-  (setq lsp-rust-rls-command '("rustup" "run" "rls"))
-  (require 'lsp-rust))
-
-(add-hook 'rust-mode-hook #'lsp-rust-enable)
+(add-hook 'rust-mode-hook #'lsp)
