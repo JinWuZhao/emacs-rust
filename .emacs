@@ -119,6 +119,7 @@ re-downloaded in order to locate PACKAGE."
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
+(require 'lsp-mode)
 (with-eval-after-load 'lsp-mode
   (setq lsp-rust-rls-command '("rustup" "run" "rls"))
   (require 'lsp-rust))
