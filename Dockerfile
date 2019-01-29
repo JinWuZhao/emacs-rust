@@ -10,10 +10,12 @@ ENV TERM=xterm-256color \
 WORKDIR /root
 
 COPY ./install.sh /usr/local/bin/install_toolchains.sh
+COPY ./launch.sh /usr/local/bin/launch_emacs.sh
 COPY ./.emacs .
 # COPY ./.emacs.d ./.emacs.d
 
 RUN chmod +x /usr/local/bin/install_toolchains.sh
+RUN chmod +x /usr/local/bin/launch_emacs.sh
 RUN install_toolchains.sh
 
 VOLUME ["/mnt/share/Documents","/mnt/share/configs"]
