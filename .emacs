@@ -116,6 +116,8 @@ re-downloaded in order to locate PACKAGE."
 (require 'bookmark)
 (setq bookmark-default-file "/mnt/share/Documents/.bookmark")
 
+(color-theme-initialize)
+
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
