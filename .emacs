@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (xclip color-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck markdown-mode company-lsp counsel yasnippet-snippets rust-mode ace-window magit)))
+    (xclip color-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -88,11 +88,8 @@ re-downloaded in order to locate PACKAGE."
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq aw-dispatch-always nil)
 
-(require 'company-lsp)
-(push 'company-lsp company-backends)
-
-(require 'yasnippet)
-(yas-global-mode 1)
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -121,5 +118,4 @@ re-downloaded in order to locate PACKAGE."
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
-(require 'lsp-mode)
-(add-hook 'rust-mode-hook #'lsp)
+(add-hook 'rust-mode-hook #'eglot-ensure)
