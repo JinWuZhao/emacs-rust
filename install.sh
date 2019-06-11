@@ -2,6 +2,9 @@
 
 pacman -Syu --noconfirm
 
+pacman -S --noconfirm cmake
+pacman -S --noconfirm gdb
+
 pacman -Scc --noconfirm
 
 mkdir /usr/local/rust
