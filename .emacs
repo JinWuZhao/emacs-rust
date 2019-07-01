@@ -50,6 +50,8 @@ re-downloaded in order to locate PACKAGE."
 (add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
 
 (tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
 (set-default-font "DejaVu Sans Mono Book 12")
 
 (display-time)
