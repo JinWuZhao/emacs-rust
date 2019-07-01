@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (xclip color-theme-modern smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
+    (xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -55,8 +55,7 @@ re-downloaded in order to locate PACKAGE."
 (display-time)
 (setq explicit-shell-file-name "/bin/bash")
 
-(load-theme 'calm-forest t t)
-(enable-theme 'calm-forest)
+(load-theme 'solarized-dark t)
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
