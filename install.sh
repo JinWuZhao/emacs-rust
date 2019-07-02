@@ -4,6 +4,8 @@ pacman -Syu --noconfirm
 
 pacman -S --noconfirm cmake
 pacman -S --noconfirm gdb
+pacman -S --noconfirm adobe-source-han-sans-cn-fonts
+pacman -S --noconfirm adobe-source-han-sans-tw-fonts
 
 pacman -Scc --noconfirm
 
