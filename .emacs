@@ -66,10 +66,10 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'awesome-tab)
 (awesome-tab-mode t)
-(global-set-key (kbd "C-c C-f") 'awesome-tab-forward)
-(global-set-key (kbd "C-c C-b") 'awesome-tab-backward)
-(global-set-key (kbd "C-c C-n") 'awesome-tab-forward-group)
-(global-set-key (kbd "C-c C-p") 'awesome-tab-backward-group)
+(global-set-key (kbd "M-n") 'awesome-tab-forward)
+(global-set-key (kbd "M-p") 'awesome-tab-backward)
+(global-set-key (kbd "C-c n") 'awesome-tab-forward-group)
+(global-set-key (kbd "C-c p") 'awesome-tab-backward-group)
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
