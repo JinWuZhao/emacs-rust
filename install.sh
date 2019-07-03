@@ -16,5 +16,7 @@ rustup update stable
 rustup component add rls rust-analysis rust-src rustfmt
 chmod -R 777 /usr/local/rust
 
+curl -O https://raw.githubusercontent.com/manateelazycat/awesome-tab/master/awesome-tab.el
+
 emacs --daemon
 emacsclient -e '(kill-emacs)'
