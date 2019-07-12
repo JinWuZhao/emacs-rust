@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
+    (youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -146,6 +146,9 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "M-o") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq aw-dispatch-always nil)
+
+(require 'youdao-dictionary)
+(global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
 
 ;; (require 'yasnippet)
 ;; (yas-global-mode 1)
