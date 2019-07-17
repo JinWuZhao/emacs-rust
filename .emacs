@@ -1,12 +1,7 @@
 ;;; -*- lexical-binding:t -*-
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-)
+(setq package-archives '(("gnu" . "http://mirrors.cloud.tencent.com/elpa/gnu/") ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/") ("melpa-stable" . "http://mirrors.cloud.tencent.com/elpa/melpa-stable/")))
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -15,7 +10,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
+    (ace-jump-mode company-tabnine youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot rust-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -96,20 +91,21 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'awesome-tab)
 (awesome-tab-mode t)
-(global-set-key (kbd "C-c C-1") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-2") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-3") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-4") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-5") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-6") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-7") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-8") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-9") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-0") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c t f") 'awesome-tab-forward)
-(global-set-key (kbd "C-c t b") 'awesome-tab-backward)
-(global-set-key (kbd "C-c t n") 'awesome-tab-forward-group)
-(global-set-key (kbd "C-c t p") 'awesome-tab-backward-group)
+(global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-3") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-4") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-5") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-6") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-7") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-8") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-9") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "M-0") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c ;") 'awesome-tab-forward)
+(global-set-key (kbd "C-c h") 'awesome-tab-backward)
+(global-set-key (kbd "C-c n") 'awesome-tab-forward-group)
+(global-set-key (kbd "C-c p") 'awesome-tab-backward-group)
+(global-set-key (kbd "C-c t") 'awesome-tab-counsel-switch-group)
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
@@ -147,11 +143,17 @@ re-downloaded in order to locate PACKAGE."
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq aw-dispatch-always nil)
 
+(require 'ace-jump-mode)
+(global-set-key (kbd "M--") 'ace-jump-word-mode)
+(global-set-key (kbd "C-M--") 'ace-jump-line-mode)
+
+(global-set-key (kbd "C-c o") 'project-find-file)
+
 (require 'youdao-dictionary)
 (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
 
-;; (require 'yasnippet)
-;; (yas-global-mode 1)
+(require 'yasnippet)
+(yas-global-mode 1)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -168,6 +170,12 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c j") 'counsel-file-jump)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
+(require 'smex)
+(smex-initialize)
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 (require 'bookmark)
@@ -177,6 +185,19 @@ re-downloaded in order to locate PACKAGE."
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
+(require 'company-tabnine)
+(add-to-list 'company-backends #'company-tabnine)
+(set-variable 'company-tabnine-binaries-folder
+              (locate-user-emacs-file
+               (file-name-nondirectory company-tabnine-binaries-folder)))
+(if (not (file-exists-p company-tabnine-binaries-folder))
+    (company-tabnine-install-binary))
+
+(setq company-show-numbers t)
+
 (require 'eglot)
 (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
 (add-hook 'rust-mode-hook #'eglot-ensure)
+
+
+(add-hook 'rust-mode-hook #'company-mode-on)
