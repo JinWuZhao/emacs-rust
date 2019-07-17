@@ -161,7 +161,6 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-s") 'swiper-isearch)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c m") 'counsel-bookmark)
 (global-set-key (kbd "C-c r") 'counsel-rg)
@@ -196,8 +195,10 @@ re-downloaded in order to locate PACKAGE."
 (setq company-show-numbers t)
 
 (require 'eglot)
-(define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+(define-key eglot-mode-map (kbd "C-c d") 'eglot-help-at-point)
 (add-hook 'rust-mode-hook #'eglot-ensure)
 
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "C-c f") 'rust-format-buffer)
 
 (add-hook 'rust-mode-hook #'company-mode-on)
