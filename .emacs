@@ -92,6 +92,8 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'awesome-tab)
 (awesome-tab-mode t)
+(setq awesome-tab-height 120)
+(setq awesome-tab-active-bar-height 20)
 (global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-3") 'awesome-tab-select-visible-tab)
