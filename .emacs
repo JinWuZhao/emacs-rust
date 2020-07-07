@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding:t -*-
 
 (require 'package)
-(setq package-archives '(("gnu" . "http://mirrors.cloud.tencent.com/elpa/gnu/") ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/") ("melpa-stable" . "http://mirrors.cloud.tencent.com/elpa/melpa-stable/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
